@@ -1,0 +1,11 @@
+{
+    "email" : {
+        "ssl" : true,
+        "host": "smtp.gmail.com",
+        "user": "**********@gmail.com",
+        "password": "**********"
+    },
+    "files" : {
+        "base" : "base:\\mailing\\folder\\"
+    }
+}

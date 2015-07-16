@@ -3,15 +3,18 @@
   "version": "1.0.0",
   "description": "Sistema de disparo de email automatizado",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node bin/main"
+  },
   "author": "Marcus Ortense",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-babel": "^5.1.0"
+    "gulp-babel": "^5.1.0",
+    "gulp-uglify": "^1.2.0"
   },
   "dependencies": {
-    "babel-runtime": "^5.7.0",
-    "bluebird": "^2.9.34"
+    "emailjs": "^0.3.16",
+    "handlebars": "^3.0.3"
   }
 }

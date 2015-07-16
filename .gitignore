@@ -15,9 +15,6 @@ $RECYCLE.BIN/
 node_modules
 npm-debug.log
 
-# build folders
-bin
-
 # private files
 config.json
 *.bat
