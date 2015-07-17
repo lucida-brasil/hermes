@@ -8,7 +8,7 @@ export default class Mail {
         receivers,
         message,
         subject = '(sem assunto)',
-        attachments,
+        attachments = [],
         template = 'default'
     ) {
         this.sender      = sender;
@@ -16,7 +16,7 @@ export default class Mail {
         this.subject     = subject;
         this.message     = message;
         this.template    = `${template}.hbs`;
-        this.attachments = attachments ? attachments.split(',') : [];
+        this.attachments = attachments;
     }
 
     make () {
@@ -37,6 +37,7 @@ export default class Mail {
             };
 
         this.attachments.forEach(function(attach){
+
             msg.attachment.push({
                 path: attach,
                 type: 'application/zip',
@@ -49,7 +50,6 @@ export default class Mail {
 
     send (smtp) {
         var message = this.make();
-
         smtp.send(
             message,
             (error, info) => {

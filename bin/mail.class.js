@@ -1,1 +1,84 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}function _classCallCheck(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(exports,"__esModule",{value:!0});var _createClass=function(){function e(e,t){for(var a=0;a<t.length;a++){var s=t[a];s.enumerable=s.enumerable||!1,s.configurable=!0,"value"in s&&(s.writable=!0),Object.defineProperty(e,s.key,s)}}return function(t,a,s){return a&&e(t.prototype,a),s&&e(t,s),t}}(),_fs=require("fs"),_fs2=_interopRequireDefault(_fs),_handlebars=require("handlebars"),_handlebars2=_interopRequireDefault(_handlebars),_path=require("path"),_path2=_interopRequireDefault(_path),Mail=function(){function e(t,a,s,r,n){void 0===r&&(r="(sem assunto)");var i=arguments.length<=5||void 0===arguments[5]?"default":arguments[5];_classCallCheck(this,e),this.sender=t,this.receivers=a,this.subject=r,this.message=s,this.template=i+".hbs",this.attachments=n?n.split(","):[]}return _createClass(e,[{key:"make",value:function(){var e=_path2["default"].resolve(__dirname,"../templates/"),t=_fs2["default"].readFileSync(_path2["default"].join(e,this.template),"utf-8"),a=_handlebars2["default"].compile(t),s=a({message:this.message}),r={text:this.message,from:'"Hermes, O carteiro" <'+this.sender+">",to:(this.receivers||[]).join(","),subject:this.subject,attachment:[{data:s,alternative:!0}]};return this.attachments.forEach(function(e){r.attachment.push({path:e,type:"application/zip",name:"attachment-"+Math.round(1e5*Math.random())+".zip"})}),r}},{key:"send",value:function(e){var t=this.make();e.send(t,function(e,t){return e?console.log(e):void console.log("Message sent: "+t)})}}]),e}();exports["default"]=Mail,module.exports=exports["default"];
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+    value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+var _fs = require('fs');
+
+var _fs2 = _interopRequireDefault(_fs);
+
+var _handlebars = require('handlebars');
+
+var _handlebars2 = _interopRequireDefault(_handlebars);
+
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var Mail = (function () {
+    function Mail(sender, receivers, message) {
+        var subject = arguments.length <= 3 || arguments[3] === undefined ? '(sem assunto)' : arguments[3];
+        var attachments = arguments.length <= 4 || arguments[4] === undefined ? [] : arguments[4];
+        var template = arguments.length <= 5 || arguments[5] === undefined ? 'default' : arguments[5];
+
+        _classCallCheck(this, Mail);
+
+        this.sender = sender;
+        this.receivers = receivers;
+        this.subject = subject;
+        this.message = message;
+        this.template = template + '.hbs';
+        this.attachments = attachments;
+    }
+
+    _createClass(Mail, [{
+        key: 'make',
+        value: function make() {
+            var dir = _path2['default'].resolve(__dirname, '../templates/');
+            var source = _fs2['default'].readFileSync(_path2['default'].join(dir, this.template), 'utf-8');
+            var template = _handlebars2['default'].compile(source);
+            var html = template({
+                message: this.message
+            });
+            var msg = {
+                text: this.message,
+                from: '"Hermes, O carteiro" <' + this.sender + '>',
+                to: (this.receivers || []).join(','),
+                subject: this.subject,
+                attachment: [{ data: html, alternative: true }]
+            };
+
+            this.attachments.forEach(function (attach) {
+
+                msg.attachment.push({
+                    path: attach,
+                    type: 'application/zip',
+                    name: 'attachment-' + Math.round(Math.random() * 100000) + '.zip'
+                });
+            });
+
+            return msg;
+        }
+    }, {
+        key: 'send',
+        value: function send(smtp) {
+            var message = this.make();
+            smtp.send(message, function (error, info) {
+                if (error) return console.log(error);
+                console.log('Message sent: ' + info);
+            });
+        }
+    }]);
+
+    return Mail;
+})();
+
+exports['default'] = Mail;
+module.exports = exports['default'];
