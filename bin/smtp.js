@@ -1,18 +1,1 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', {
-  value: true
-});
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-var _configJson = require('../config.json');
-
-var _configJson2 = _interopRequireDefault(_configJson);
-
-var _emailjsEmail = require('emailjs/email');
-
-var _emailjsEmail2 = _interopRequireDefault(_emailjsEmail);
-
-exports['default'] = _emailjsEmail2['default'].server.connect(_configJson2['default'].email);
-module.exports = exports['default'];
+"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}Object.defineProperty(exports,"__esModule",{value:!0});var _configJson=require("../config.json"),_configJson2=_interopRequireDefault(_configJson),_emailjsEmail=require("emailjs/email"),_emailjsEmail2=_interopRequireDefault(_emailjsEmail);exports["default"]=_emailjsEmail2["default"].server.connect(_configJson2["default"].email),module.exports=exports["default"];

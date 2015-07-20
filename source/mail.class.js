@@ -1,6 +1,7 @@
-import fs     from 'fs';
-import hbs    from 'handlebars';
-import path   from 'path';
+import fs   from 'fs';
+import hbs  from 'handlebars';
+import path from 'path';
+import mime from './mime.json';
 
 export default class Mail {
     constructor(
@@ -37,11 +38,20 @@ export default class Mail {
             };
 
         this.attachments.forEach(function(attach){
+            var file_name = attach.split('\\');
+            file_name = file_name[file_name.length -1];
+            var extension = file_name.split('.')[1];
+
+            console.log({
+                path: attach,
+                type: mime[extension] || 'text/plain',
+                name: file_name
+            });
 
             msg.attachment.push({
                 path: attach,
-                type: 'application/zip',
-                name: `attachment-${Math.round(Math.random() * 100000)}.zip`
+                type: mime[extension] || 'text/plain',
+                name: file_name
             });
         });
 
@@ -54,7 +64,7 @@ export default class Mail {
             message,
             (error, info) => {
                 if (error) return console.log(error);
-                console.log('Message sent: ' + info);
+                console.log('Message sent: ', info);
         });
     }
 }

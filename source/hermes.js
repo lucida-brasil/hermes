@@ -50,7 +50,7 @@ function zipAttachment(attachments, cb){
                 if (cb) cb(zip_dir);
             }));
         }
-        else if (cb) cb(null);
+        else if (cb) cb(p);
     }
     else if (cb) cb(null);
 }
