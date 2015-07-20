@@ -1,13 +1,10 @@
 import fs      from 'fs';
 import path    from 'path';
-import Mail    from './mail.class';
-import config  from '../config.json';
-import smtp    from './smtp';
 import easyzip from 'easy-zip';
-
-var Zip = easyzip.EasyZip;
-var base_dir = path.resolve(config.files.base);
-var folders  = fs.readdirSync(base_dir);
+import program from 'commander';
+import config  from '../config.json';
+import Mail    from './mail.class';
+import smtp    from './smtp';
 
 function replaceAll(str, token, newtoken) {
 	while (str.indexOf(token) !== -1) {
@@ -37,7 +34,7 @@ function csv2json(csv){
 
 function zipAttachment(attachments, cb){
     attachments = attachments ? attachments.split(',') : [];
-    var zip  = new Zip();
+    var zip  = new easyzip.EasyZip();
     var p    = attachments[0] || false;
 
     if (p) {
@@ -56,31 +53,49 @@ function zipAttachment(attachments, cb){
 }
 
 function sendMailing(dir){
+	console.log(`Disparando emails de ${dir}`);
     fs.readFile(
-    dir,
-    'utf-8',
-    (err, data) => {
-        var mailing = csv2json(data);
+    	dir,
+	    'utf-8',
+	    (err, data) => {
+	        var mailing = csv2json(data);
 
-        mailing.forEach(function(opts){
-            opts.to = replaceAll(opts.to, ' ', '').split(',');
+	        mailing.forEach(function(opts){
+	            opts.to = replaceAll(opts.to, ' ', '').split(',');
 
-            zipAttachment(opts.attachments, (zip_path) => {
-                var attach = zip_path ? [zip_path] : undefined;
-                (new Mail(
-                    config.email.user,
-                    opts.to,
-                    opts.message,
-                    opts.subject,
-                    attach
-                )).send(smtp);
-            });
-        });
-    }
-);
+	            zipAttachment(opts.attachments, (zip_path) => {
+	                var attach = zip_path ? [zip_path] : undefined;
+	                (new Mail(
+	                    config.email.user,
+	                    opts.to,
+	                    opts.message,
+	                    opts.subject,
+	                    attach
+	                )).send(smtp);
+	            });
+	        });
+	    }
+	);
 }
 
-folders.forEach(function(folder){
-    var dir = path.join(base_dir, `${folder}/mailing.csv`);
-    sendMailing(dir);
-});
+var send = {
+	mailing(dir){
+		dir = path.resolve(process.cwd(), dir);
+		sendMailing(dir);
+	},
+	all(){
+		var base_dir = path.resolve(config.files.base);
+		var folders  = fs.readdirSync(base_dir);
+		folders.forEach(function(folder){
+		    var dir = path.join(base_dir, `${folder}/mailing.csv`);
+		    sendMailing(dir);
+		});
+	}
+}
+
+console.log('\n**HERMES INIT**\n');
+program
+	.version('0.0.1')
+	.option('-m, --mailing [file]', 'run one mailing', send.mailing)
+	.option('-a, --all', 'send all mailings in base folder', send.all)
+	.parse(process.argv);

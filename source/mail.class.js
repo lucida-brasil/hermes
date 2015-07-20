@@ -42,12 +42,6 @@ export default class Mail {
             file_name = file_name[file_name.length -1];
             var extension = file_name.split('.')[1];
 
-            console.log({
-                path: attach,
-                type: mime[extension] || 'text/plain',
-                name: file_name
-            });
-
             msg.attachment.push({
                 path: attach,
                 type: mime[extension] || 'text/plain',
@@ -64,7 +58,7 @@ export default class Mail {
             message,
             (error, info) => {
                 if (error) return console.log(error);
-                console.log('Message sent: ', info);
+                console.log('Message sent: ', info.header.date);
         });
     }
 }
