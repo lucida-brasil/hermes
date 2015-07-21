@@ -52,13 +52,13 @@ export default class Mail {
         return msg;
     }
 
-    send (smtp) {
+    send (smtp, cb) {
         var message = this.make();
         smtp.send(
             message,
             (error, info) => {
-                if (error) return console.log(error);
-                console.log('Message sent: ', info.header.date);
-        });
+                if('function' === typeof cb) cb(error, info)
+            }
+        );
     }
 }

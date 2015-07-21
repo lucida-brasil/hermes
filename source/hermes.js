@@ -52,6 +52,14 @@ function zipAttachment(attachments, cb){
     else if (cb) cb(null);
 }
 
+function clear(zpath) {
+	if (zpath.indexOf('/tmp/') >=0 || zpath.indexOf('\\tmp\\') >=1) {
+		fs.unlink(zpath, (err) => {
+			if (err) console.log(err);
+		});
+	}
+}
+
 function sendMailing(dir){
 	console.log(`Disparando emails de ${dir}`);
     fs.readFile(
@@ -71,7 +79,11 @@ function sendMailing(dir){
 	                    opts.message,
 	                    opts.subject,
 	                    attach
-	                )).send(smtp);
+	                )).send(smtp, (err, info) => {
+						if(err) console.log(err);
+						else console.log(`email send at ${info.header.date}`);
+						clear(zip_path);
+					});
 	            });
 	        });
 	    }
