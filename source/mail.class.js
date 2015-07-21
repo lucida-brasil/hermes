@@ -17,7 +17,8 @@ export default class Mail {
         this.subject     = subject;
         this.message     = message;
         this.template    = `${template}.hbs`;
-        this.attachments = attachments;
+        this.attachments = attachments || [];
+        //TODO: verificar problema com valor default
     }
 
     make () {

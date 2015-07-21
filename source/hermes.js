@@ -32,7 +32,7 @@ function csv2json(csv){
     return result;
 }
 
-function zipAttachment(attachments, cb){
+function buildAttachment(attachments, cb){
     attachments = attachments ? attachments.split(',') : [];
     var zip  = new easyzip.EasyZip();
     var p    = attachments[0] || false;
@@ -41,21 +41,37 @@ function zipAttachment(attachments, cb){
         let last_char = p[p.length -1];
         let rnd       = Math.round(Math.random() * 1000000);
         let zip_dir   = path.join(__dirname,`../tmp/${rnd}.zip`);
-
+		// é uma pasta?
         if ( '\\' === last_char || '/' === last_char ) {
-            zip.zipFolder(p, () => zip.writeToFile(zip_dir, function(){
-                if (cb) cb(zip_dir);
+            zip.zipFolder(p, () => zip.writeToFile(zip_dir,() => {
+                if (cb) cb([zip_dir]);
             }));
         }
-        else if (cb) cb(p);
+        else {
+			var attach = [];
+			attachments.forEach((file) => {
+				file = (file||'').trim();
+				let tmp  = file.split('\\');
+				let ext = tmp[tmp.length -1].split('.')[1];
+				//é um arquivo com extensão
+				if ( ext ) {
+				    attach.push(file);
+				}
+			});
+			if (cb) cb(attach);
+		}
     }
     else if (cb) cb(null);
 }
 
-function clear(zpath) {
-	if (zpath.indexOf('/tmp/') >=0 || zpath.indexOf('\\tmp\\') >=1) {
-		fs.unlink(zpath, (err) => {
-			if (err) console.log(err);
+function clear(files) {
+	if (files) {
+		files.forEach((zpath)=>{
+			if (zpath.indexOf('/tmp/') >=0 || zpath.indexOf('\\tmp\\') >=1) {
+				fs.unlink(zpath, (err) => {
+					if (err) console.log(err);
+				});
+			}
 		});
 	}
 }
@@ -71,8 +87,7 @@ function sendMailing(dir){
 	        mailing.forEach(function(opts){
 	            opts.to = replaceAll(opts.to, ' ', '').split(',');
 
-	            zipAttachment(opts.attachments, (zip_path) => {
-	                var attach = zip_path ? [zip_path] : undefined;
+	            buildAttachment(opts.attachments, (attach) => {
 	                (new Mail(
 	                    config.email.user,
 	                    opts.to,
@@ -82,7 +97,7 @@ function sendMailing(dir){
 	                )).send(smtp, (err, info) => {
 						if(err) console.log(err);
 						else console.log(`email send at ${info.header.date}`);
-						clear(zip_path);
+						clear(attach);
 					});
 	            });
 	        });
