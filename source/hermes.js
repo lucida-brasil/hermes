@@ -6,6 +6,7 @@ import config  from '../config.json';
 import Mail    from './mail.class';
 import smtp    from './smtp';
 
+//tratamento de string
 function replaceAll(str, token, newtoken) {
 	while (str.indexOf(token) !== -1) {
 		str = str.replace(token, newtoken);
@@ -13,6 +14,7 @@ function replaceAll(str, token, newtoken) {
 	return str;
 };
 
+//recebe a string do csv e converte para um objeto
 function csv2json(csv){
     csv = replaceAll(csv, '\r', '');
     var lines=csv.split('\n');
@@ -32,6 +34,7 @@ function csv2json(csv){
     return result;
 }
 
+//monta a estrutura de anexo com ou sem zip
 function buildAttachment(attachments, cb){
     attachments = attachments ? attachments.split(',') : [];
     var zip  = new easyzip.EasyZip();
@@ -64,6 +67,7 @@ function buildAttachment(attachments, cb){
     else if (cb) cb(null);
 }
 
+//apaga arquivos temporarios
 function clear(files) {
 	if (files) {
 		files.forEach((zpath)=>{
@@ -76,6 +80,7 @@ function clear(files) {
 	}
 }
 
+//recebe o mailing e dispara os emails
 function sendMailing(dir){
 	console.log(`Disparando emails de ${dir}`);
     fs.readFile(
@@ -105,6 +110,7 @@ function sendMailing(dir){
 	);
 }
 
+//funções utilizadas pela CLI
 var send = {
 	mailing(dir){
 		dir = path.resolve(process.cwd(), dir);
