@@ -5,6 +5,7 @@ import program from 'commander';
 import config  from '../config.json';
 import Mail    from './mail.class';
 import smtp    from './smtp';
+import pack    from '../package.json';
 
 //tratamento de string
 function replaceAll(str, token, newtoken) {
@@ -113,10 +114,12 @@ function sendMailing(dir){
 //funções utilizadas pela CLI
 var send = {
 	mailing(dir){
+		console.log('\n**HERMES INIT**\n');
 		dir = path.resolve(process.cwd(), dir);
 		sendMailing(dir);
 	},
 	all(){
+		console.log('\n**HERMES INIT**\n');
 		var base_dir = path.resolve(config.files.base);
 		var folders  = fs.readdirSync(base_dir);
 		folders.forEach(function(folder){
@@ -126,9 +129,16 @@ var send = {
 	}
 }
 
-console.log('\n**HERMES INIT**\n');
+//command line
 program
-	.version('0.0.1')
-	.option('-m, --mailing [file]', 'run one mailing', send.mailing)
-	.option('-a, --all', 'send all mailings in base folder', send.all)
-	.parse(process.argv);
+	.version(pack.version)
+	.option(
+		'-m, --mailing [arquivo]',
+		'Send emails from a specified mailing',
+		send.mailing
+	)
+	.option(
+		'-a, --all',
+		'Send all mailings from base folder',
+		send.all
+	).parse(process.argv);
