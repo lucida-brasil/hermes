@@ -121,7 +121,7 @@ export default {
 		var base_dir = path.resolve(config.files.base);
 		var folders  = fs.readdirSync(base_dir);
 		folders.forEach(function(folder){
-		    var dir = path.join(base_dir, `${folder}/mailing.csv`);
+		    var dir = path.join(base_dir, `${folder}`);
 		    sendMailing(dir);
 		});
 	}
