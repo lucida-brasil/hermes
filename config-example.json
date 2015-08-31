@@ -5,6 +5,7 @@
         "user": "**********@gmail.com",
         "password": "**********"
     },
+    "sender_name" : "Hermes, O carteiro",
     "files" : {
         "base" : "base:\\mailing\\folder\\"
     }

@@ -1,7 +1,8 @@
-import fs   from 'fs';
-import hbs  from 'handlebars';
-import path from 'path';
-import mime from './mime.json';
+import fs     from 'fs';
+import hbs    from 'handlebars';
+import path   from 'path';
+import mime   from './mime.json';
+import config from '../config.json';
 
 export default class Mail {
     constructor(
@@ -18,7 +19,6 @@ export default class Mail {
         this.dataLayer   = dataLayer;
         this.template    = `${template}.hbs`;
         this.attachments = attachments || [];
-        //TODO: verificar problema com valor default
     }
 
     make () {
@@ -28,7 +28,7 @@ export default class Mail {
         var html     = template(this.dataLayer);
         var msg = {
                 text: this.dataLayer,
-                from: `"Informações de Venda - Brilia" <${this.sender}>`,
+                from: `"${config.sender_name}" <${this.sender}>`,
                 to: (this.receivers||[]).join(','),
                 subject: this.subject,
                 attachment: [
