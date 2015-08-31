@@ -87,16 +87,24 @@ function sendMailing(dir){
 	    'utf-8',
 	    (err, data) => {
 	        var mailing = csv2json(data);
-
+	        
 	        mailing.forEach(function(opts){
 	            opts.to = replaceAll(opts.to, ' ', '').split(',');
+
+	            var to = opts.to;
+	            delete opts.to;
+
+	            var subject = opts.subject;
+	            delete opts.subject;	
+
+	            var dataLayer = opts;
 
 	            buildAttachment(opts.attachments, (attach) => {
 	                (new Mail(
 	                    config.email.user,
-	                    opts.to,
-	                    opts.message,
-	                    opts.subject,
+	                    to,
+	                    subject,
+	                    dataLayer,
 	                    attach
 	                )).send(smtp, (err, info) => {
 						if(err) console.log(err);

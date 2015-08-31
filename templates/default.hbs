@@ -12,9 +12,13 @@
     </tr>
     <tr>
         <td style="text-align: center; padding: 20px; font-family: verdana; font-size: 13px; color:#474848;">
-            Voc&ecirc; atingiu <span style="font-size: 18px;"><strong>15%</strong></span> da sua meta.
-            <br>
-            Seu total de vendas &eacute; de: <span style="font-size: 18px;">R$20000,00</span>
+            {{#if goal}}
+                Voc&ecirc; atingiu <span style="font-size: 18px;"><strong>{{goal}}</strong></span> da sua meta.
+                <br>
+            {{/if}}    
+            {{#if sales}}
+            Seu total de vendas &eacute; de: <span style="font-size: 18px;">R${{sales}}</span>
+            {{/if}}  
         </td>
     </tr>
     <tr>
