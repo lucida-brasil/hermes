@@ -1,4 +1,3 @@
-to;message;subject;attach;goal;sales
-ortense@lucida.com.br, victor@lucida.com.br;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.;Hermes new template;;30%;15000
-victor@lucida.com.br;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.;Hermes new template;;11%;8000
-victor.toschi@hotmail.com;Segunda mensagem com seus resultados do mês.;Resultado de vendas mensal;;17%;7542
+to;message;subject;attach;goal;sales;template
+victor@lucida.com.br;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer.;Hermes new template;;11%;8000;default
+victor.toschi@hotmail.com;Segunda mensagem com seus resultados do mês.;Resultado de vendas mensal;;17%;7542;other

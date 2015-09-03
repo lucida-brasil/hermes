@@ -95,7 +95,10 @@ function sendMailing(dir){
 	            delete opts.to;
 
 	            var subject = opts.subject;
-	            delete opts.subject;	
+	            delete opts.subject;
+
+	            var template = opts.template;
+	            delete opts.template;
 
 	            var dataLayer = opts;
 
@@ -105,7 +108,8 @@ function sendMailing(dir){
 	                    to,
 	                    subject,
 	                    dataLayer,
-	                    attach
+	                    attach,
+	                    template
 	                )).send(smtp, (err, info) => {
 						if(err) console.log(err);
 						else console.log(`email send at ${info.header.date}`);

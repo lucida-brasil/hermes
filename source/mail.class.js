@@ -11,7 +11,7 @@ export default class Mail {
         subject = '(sem assunto)',
         dataLayer,
         attachments = [],
-        template = 'default'
+        template = template || 'default'
     ) {
         this.sender      = sender;
         this.receivers   = receivers;
