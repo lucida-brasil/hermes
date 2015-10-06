@@ -11,8 +11,9 @@ export default class Mail {
         subject = '(sem assunto)',
         dataLayer,
         attachments = [],
-        template = template || 'default'
+        template
     ) {
+        template = template || 'default';
         this.sender      = sender;
         this.receivers   = receivers;
         this.subject     = subject;
@@ -22,11 +23,11 @@ export default class Mail {
     }
 
     make () {
-        var dir      = path.resolve(__dirname, '../templates/');
-        var source   = fs.readFileSync(path.join(dir, this.template), 'utf-8');
-        var template = hbs.compile(source);
-        var html     = template(this.dataLayer);
-        var msg = {
+        let dir      = path.resolve(__dirname, '../templates/');
+        let source   = fs.readFileSync(path.join(dir, this.template), 'utf-8');
+        let template = hbs.compile(source);
+        let html     = template(this.dataLayer);
+        let msg = {
                 text: this.dataLayer,
                 from: `"${config.sender_name}" <${this.sender}>`,
                 to: (this.receivers||[]).join(','),

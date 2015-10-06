@@ -13,6 +13,12 @@ function replaceAll(str, token, newtoken) {
 	return str;
 };
 
+function f(str) {
+	let _path = str.toLowerCase().replace('table:','').trim();
+	let data = fs.readFileSync(_path, 'utf-8');
+	return csv2json(data);
+}
+
 //recebe a string do csv e converte para um objeto
 function csv2json(csv){
     csv = replaceAll(csv, '\r', '');
@@ -21,11 +27,14 @@ function csv2json(csv){
     var headers=lines.shift().split(';');
     lines.pop();
 
-    lines.forEach(function(line){
+    lines.forEach((line) => {
         line = line.split(';');
         var o = {};
-        headers.forEach(function(prop, index){
+        headers.forEach((prop, index) => {
             o[prop] = line[index];
+			if (o[prop].indexOf('table:') === 0) {
+				o[prop] = f(o[prop]);
+			}
         });
         result.push(o);
     });
