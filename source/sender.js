@@ -1,46 +1,11 @@
-import fs      from 'fs';
-import path    from 'path';
-import easyzip from 'easy-zip';
-import config  from '../config.json';
-import Mail    from './mail.class';
-import smtp    from './smtp';
-
-//tratamento de string
-function replaceAll(str, token, newtoken) {
-	while (str.indexOf(token) !== -1) {
-		str = str.replace(token, newtoken);
-	}
-	return str;
-};
-
-function f(str) {
-	let _path = str.toLowerCase().replace('table:','').trim();
-	let data = fs.readFileSync(_path, 'utf-8');
-	return csv2json(data);
-}
-
-//recebe a string do csv e converte para um objeto
-function csv2json(csv){
-    csv = replaceAll(csv, '\r', '');
-    var lines=csv.split('\n');
-    var result = [];
-    var headers=lines.shift().split(';');
-    lines.pop();
-
-    lines.forEach((line) => {
-        line = line.split(';');
-        var o = {};
-        headers.forEach((prop, index) => {
-            o[prop] = line[index];
-			if (o[prop].indexOf('table:') === 0) {
-				o[prop] = f(o[prop]);
-			}
-        });
-        result.push(o);
-    });
-
-    return result;
-}
+import fs         from 'fs';
+import path       from 'path';
+import easyzip    from 'easy-zip';
+import config     from '../config.json';
+import Mail       from './mail.class';
+import smtp       from './smtp';
+import replaceAll from './util/replace-all';
+import csv2json   from './util/csv2json';
 
 //monta a estrutura de anexo com ou sem zip
 function buildAttachment(attachments, cb){
@@ -95,7 +60,7 @@ function sendMailing(dir){
     	dir,
 	    'utf-8',
 	    (err, data) => {
-	        var mailing = utf8f.enconde(csv2json(data));
+	        var mailing = csv2json(data);
 	        console.log(mailing);
 
 	        mailing.forEach(function(opts){

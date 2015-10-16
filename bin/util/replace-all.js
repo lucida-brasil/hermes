@@ -1,0 +1,1 @@
+"use strict";function replaceAll(e,r,l){for(;-1!==e.indexOf(r);)e=e.replace(r,l);return e}Object.defineProperty(exports,"__esModule",{value:!0}),exports["default"]=replaceAll,module.exports=exports["default"];
