@@ -16,10 +16,15 @@ node_modules
 npm-debug.log
 
 # private files
+base
 tmp
 config.json
 *.bat
-__*
+_*
 
 # Editors
 .settings
+
+#vscode
+vscode
+jsconfig.json
