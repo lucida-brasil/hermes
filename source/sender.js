@@ -64,7 +64,7 @@ function sendMailing(dir){
 	        console.log(mailing);
 
 	        mailing.forEach(function(opts){
-	            opts.to = replaceAll(opts.to, ' ', '').split(',');
+	            opts.to = replaceAll(opts.to || '', ' ', '').split(',');
 
 	            var to = opts.to;
 	            delete opts.to;
