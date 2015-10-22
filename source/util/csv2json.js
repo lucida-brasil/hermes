@@ -18,7 +18,12 @@ export default function csv2json(csv) {
     }
 
     let headers = lines.shift();
-
+	for (let i = 0; i < headers.length; i++) {
+		//problema com parse
+		if(headers[i].indexOf('?')===0){
+			headers[i] = headers[i].replace('?','');
+		}
+	}
     for (let y = 0; y < lines.length; y++) {
     	let line = lines[y];
     	let propName;
