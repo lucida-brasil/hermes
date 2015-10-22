@@ -23,6 +23,7 @@ export default function csv2json(csv) {
 		if(headers[i].indexOf('?')===0){
 			headers[i] = headers[i].replace('?','');
 		}
+		console.log(headers[i]);
 	}
     for (let y = 0; y < lines.length; y++) {
     	let line = lines[y];
