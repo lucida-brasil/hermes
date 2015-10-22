@@ -99,23 +99,24 @@
             </table>
             <table align="center" cellspacing="0" style="width: 500px; font-size: 14px; color:#666; padding-top: 20px;">
             <tr>
+                <td style="padding-bottom: 10px; text-align: center;"><i>Data</i></td>
                 <td style="padding-bottom: 10px; text-align: center;"><i>cursos.estacio</i></td>
                 <td style="padding-bottom: 10px; text-align: center;"><i>incricoes.estacio</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"></td>
             </tr>
 
             {{#each table3}}
 
                 {{#if maior_valor}}
                 <tr>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
                     <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_cursos_estacio}}</td>
                     <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_inscricoes_estacio}}</td>
                     <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
                 </tr>
                 {{else}}
                 <tr>
-
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_cursos_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_cursos_estacio}}</td>
                     <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_inscricoes_estacio}}</td>
                     <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
                 </tr>
