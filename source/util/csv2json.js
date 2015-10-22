@@ -1,6 +1,7 @@
 'use strict';
 import fs         from 'fs';
 import replaceAll from './replace-all';
+import sanitize   from './sanitize-str';
 
 function f(str) {
 	let _path = str.toLowerCase().replace('table:','').trim();
@@ -18,13 +19,12 @@ export default function csv2json(csv) {
     }
 
     let headers = lines.shift();
-	for (let i = 0; i < headers.length; i++) {
-		//problema com parse
-		if(headers[i].indexOf('?')===0){
-			headers[i] = headers[i].replace('?','');
-		}
-		console.log(headers[i]);
-	}
+	//erro no parse
+    for (let i = 0; i < headers.length; i++) {
+        headers[i] = sanitize(headers[i]);
+    }
+
+
     for (let y = 0; y < lines.length; y++) {
     	let line = lines[y];
     	let propName;
@@ -39,7 +39,8 @@ export default function csv2json(csv) {
 	            }
 			}
     	}
-    	result.push(obj);
+        if( Object.keys(obj).length > 0 ) result.push(obj);
+    	
     }
     return result;
 }

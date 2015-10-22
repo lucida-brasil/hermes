@@ -61,7 +61,6 @@ function sendMailing(dir){
 	    'utf-8',
 	    (err, data) => {
 	        var mailing = csv2json(data);
-	        console.log(mailing);
 
 	        mailing.forEach(function(opts){
 	            opts.to = replaceAll(opts.to || '', ' ', '').split(',');

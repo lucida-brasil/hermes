@@ -34,20 +34,20 @@
 
                 {{#if maior_valor}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Vis_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Vis_insc_est}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{visitas_curso_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{visitas_inscricoes_estacio}}</td>
                 </tr>
                 {{else}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Vis_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Vis_insc_est}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{visitas_curso_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{visitas_inscricoes_estacio}}</td>
                 </tr>
                 {{/if}}
 
             {{else}}
-                <span style="color:red">não funfou o each =/</span>
+                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
             </table>
@@ -71,20 +71,20 @@
 
                 {{#if maior_valor}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Insc_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Insc_insc_est}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{inscricoes_cursos_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{inscricoes_inscricoes_estacio}}</td>
                 </tr>
                 {{else}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Insc_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Insc_insc_est}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{inscricoes_cursos_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{inscricoes_inscricoes_estacio}}</td>
                 </tr>
                 {{/if}}
 
             {{else}}
-                <span style="color:red">não funfou o each =/</span>
+                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
             </table>
@@ -108,24 +108,25 @@
 
                 {{#if maior_valor}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Tx_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Tx_Ins_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{Tx_dif}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_cursos_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_inscricoes_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
                 </tr>
                 {{else}}
                 <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{Tx_curso_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">{{Tx_Ins_est}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{Tx_dif}}</td>
+
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_cursos_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_inscricoes_estacio}}</td>
+                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
                 </tr>
                 {{/if}}
 
             {{else}}
-                <span style="color:red">não funfou o each =/</span>
+                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
             <!--tr>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green;">2.97%</td>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">2.97%</td>
                 <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">2.38%</td>
                 <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">-19.78%</td>
             </tr>
