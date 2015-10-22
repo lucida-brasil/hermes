@@ -10,22 +10,28 @@ function f(str) {
 
 export default function csv2json(csv) {
     csv = replaceAll(csv, '\r', '');
-    var lines=csv.split('\n');
-    var result = [];
-    var headers=lines.shift().split(';');
-    lines.pop();
+    let result = [];
+    let lines = csv = csv.split('\n');
 
-    lines.forEach((line) => {
-        line = line.split(';');
-        var o = {};
-        headers.forEach((prop, index) => {
-            o[prop] = line[index];
-			if (o[prop].indexOf('table:') === 0) {
-				o[prop] = f(o[prop]);
-			}
-        });
-        result.push(o);
-    });
+    for (let i = 0; i < lines.length; i++) {
+        lines[i] = lines[i].split(';');
+    }
 
+    let headers = lines.shift();
+
+    for (let y = 0; y < lines.length; y++) {
+    	let line = lines[y];
+    	let propName;
+    	let obj = {};
+
+    	for (let i = 0; i < headers.length; i++) {
+    		propName = headers[i];
+            obj[propName] = line[i];
+            if (line[i].indexOf('table:') === 0){
+                obj[propName] = f(obj[propName]);
+            }
+    	}
+    	result.push(obj);
+    }
     return result;
 }
