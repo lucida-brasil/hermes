@@ -25,11 +25,13 @@ export default function csv2json(csv) {
     	let obj = {};
 
     	for (let i = 0; i < headers.length; i++) {
-    		propName = headers[i];
-            obj[propName] = line[i];
-            if (line[i].indexOf('table:') === 0){
-                obj[propName] = f(obj[propName]);
-            }
+    		if(line[i]) {
+				propName = headers[i];
+	            obj[propName] = line[i];
+	            if (line[i].indexOf('table:') === 0){
+	                obj[propName] = f(obj[propName]);
+	            }
+			}
     	}
     	result.push(obj);
     }
