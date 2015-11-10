@@ -20,6 +20,8 @@ tmp
 config.json
 *.bat
 _*
+dest
+*.rar
 
 # Editors
 .settings

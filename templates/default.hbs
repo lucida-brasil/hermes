@@ -7,158 +7,106 @@
     <body>
 <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
     <tr>
-        <td style="text-align: center; padding: 20px;">
-            <img src="http://cursos.estacio.br/img/logo-estacio-horizontal.png" />
+        <td>
+            <img src="http://www.grupoboticario.com.br/_layouts/GB.PortalSharePoint.Pages/Images/nossosnegocios/logo-oboticario.jpg" width="600" />
         </td>
     </tr>
     <tr>
-        <td style="padding: 13px; font-family: 'effra',sans-serif; font-size: 16px; color:#fff; text-align: center;" bgcolor="#999">
-            {{title}}
+        <td style="padding: 13px; font-family: 'effra',sans-serif; font-size: 16px; color:#FEFDFF; text-align: center;" bgcolor="#e0b5b5">
+            <strong>{{title}}</strong>
         </td>
     </tr>
     <tr>
-        <td style="padding: 40px 50px 50px 50px; font-family: 'effra',sans-serif; font-size: 14px; color:#474848; border: 1px solid #f2f2f2;" bgcolor="#f2f2f2">
+        <td style="padding: 40px 0 50px 0; font-family: 'effra',sans-serif; font-size: 14px; color:#474848; border: 1px solid #f2f2f2;" bgcolor="#f2f2f2">
             <table align="center" cellspacing="0" style="width: 500px; font-size: 24px; color:#666;">
                 <tr>
-                    <td align="center"><strong>Visitas</strong></td>
+                    <td align="center;" style="text-align:center;"><strong>Log de KPI's</strong></td>
                 </tr>
             </table>
-            <table align="center" cellspacing="0" style="width: 500px; font-size: 14px; color:#666; padding-top: 20px;">
+            <table align="center" cellspacing="0" style="width: 600px; font-size: 11px; color:#666; padding-top: 30px;">
             <tr>
-                <td style="padding-bottom: 10px; text-align: center;"><i>Data</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>cursos.estacio</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>inscricoes.estacio</i></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Data</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>QVW</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Aba</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Status</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Última KPI Boticário</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Última KPI Eudora</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Última KPI TBB</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 11px;"><strong>Última KPI QDB</strong></td>
             </tr>
 
             {{#each table1}}
 
-                {{#if maior_valor}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{visitas_curso_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{visitas_inscricoes_estacio}}</td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{visitas_curso_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{visitas_inscricoes_estacio}}</td>
-                </tr>
-                {{/if}}
+            <tr>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{datalog}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{qvw}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{aba}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{status}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{dataultimakpiboticario}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{dataultimakpieudora}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{dataultimakpitbb}}</td>
+                <td style="border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{dataultimakpiqdb}}</td>
+            </tr>
 
-            {{else}}
-                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
             </table>
         </td>
     </tr>
     <tr>
-        <td style="text-align: center; padding: 50px; font-family: 'effra',sans-serif; font-size: 13px; color:#474848; border: 1px solid #f2f2f2;">
+        <td style="text-align: center; padding: 40px 0 50px 0; font-family: 'effra',sans-serif; font-size: 13px; color:#474848; border: 1px solid #f2f2f2;">
             <table align="center" cellspacing="0" style="width: 500px; font-size: 24px; color:#666;">
                 <tr>
-                    <td align="center"><strong>Inscrições</strong></td>
+                    <td align="center"><strong>Log de Erros</strong></td>
                 </tr>
             </table>
-            <table align="center" cellspacing="0" style="width: 500px; font-size: 14px; color:#666; padding-top: 20px;">
+            <table align="center" cellspacing="0" style="width: 570px; font-size: 12px; color:#666; padding-top: 20px;">
             <tr>
-                <td style="padding-bottom: 10px; text-align: center;"><i>Data</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>cursos.estacio</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>inscricoes.estacio</i></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 13px;"><strong>Arquivo</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 13px;"><strong>Erro</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 13px;"><strong>Linha do Erro</strong></td>
             </tr>
 
             {{#each table2}}
 
-                {{#if maior_valor}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{inscricoes_cursos_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{inscricoes_inscricoes_estacio}}</td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{inscricoes_cursos_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{inscricoes_inscricoes_estacio}}</td>
-                </tr>
-                {{/if}}
+            <tr>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{arquivo}}</td>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{erro}}</td>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; padding: 7px 3px;">{{linhaerro}}</td>
+            </tr>
 
-            {{else}}
-                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
             </table>
         </td>
     </tr>
     <tr>
-        <td style="padding: 50px; font-family: 'effra',sans-serif; font-size: 14px; color:#474848; border: 1px solid #f2f2f2;" bgcolor="#f2f2f2">
+        <td style="padding: 50px 0; font-family: 'effra',sans-serif; font-size: 14px; color:#474848; border: 1px solid #f2f2f2;" bgcolor="#f2f2f2">
             <table align="center" cellspacing="0" style="width: 500px; font-size: 24px; color:#666;">
                 <tr>
-                    <td align="center"><strong>Taxa de Inscrição</strong></td>
+                    <td align="center"><strong>Log de Erros Texto</strong></td>
                 </tr>
             </table>
-            <table align="center" cellspacing="0" style="width: 500px; font-size: 14px; color:#666; padding-top: 20px;">
+            <table align="center" cellspacing="0" style="width: 470px; font-size: 12px; color:#666; padding-top: 20px;">
             <tr>
-                <td style="padding-bottom: 10px; text-align: center;"><i>Data</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>cursos.estacio</i></td>
-                <td style="padding-bottom: 10px; text-align: center;"><i>inscricoes.estacio</i></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 13px;"><strong>Arquivo</strong></td>
+                <td style="padding-bottom: 10px; text-align: center; font-size: 13px;"><strong>Error</strong></td>
             </tr>
 
             {{#each table3}}
 
-                {{#if maior_valor}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_cursos_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_inscricoes_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
-                </tr>
-                {{else}}
-                <tr>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{data}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">{{tx_insc_cursos_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{tx_insc_inscricoes_estacio}}</td>
-                    <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">{{tx_insc_diferenca}}</td>
-                </tr>
-                {{/if}}
+            <tr>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{arquivo}}</td>
+                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">{{error}}</td>
+            </tr>
 
-            {{else}}
-                <!-- <span style="color:red">não funfou o each =/</span> -->
             {{/each}}
 
-            <!--tr>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: green; font-weight: bold;">2.97%</td>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">2.38%</td>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center; color: #999;">-19.78%</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px; background: #ccc; text-align: center;">11-Jul</td>
-                <td style="padding: 5px; background: #ccc; text-align: center;">34,951</td>
-                <td style="padding: 5px; background: #ccc; text-align: center;">3,176</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">10-Jul</td>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">49,334</td>
-                <td style="padding: 5px;border: 1px solid #ccc; text-align: center;">4,792</td>
-            </tr>
-            <tr>
-                <td style="padding: 5px; background: #ccc; text-align: center;">11-Jul</td>
-                <td style="padding: 5px; background: #ccc; text-align: center;">34,951</td>
-                <td style="padding: 5px; background: #ccc; text-align: center;">3,176</td>
-            </tr>
-            <tr>
-                <td></td><td></td><td></td>
-            </tr>
-            <tr>
-                <td style="text-align:center; padding: 10px; font-size: 17px;"><strong>3.23%</strong></td>
-                <td style="text-align:center; padding: 10px; font-size: 17px;"><strong>3.22%</strong></td>
-                <td style="text-align:center; padding: 10px; font-size: 17px;"><strong>-0.43%</strong></td>
-            </tr-->
             </table>
         </td>
     </tr>
     <tr>
-        <td align="right" bgcolor="#999" style="padding: 10px;"><a href="http://lucida.com.br" target="_blank" title="M&eacute;tricas que fazem sentido"><img src="http://lucida-brasil.github.io/public/Images/lucida-logo.png" alt="Lúcida" width="12%" border="0"></a></td>
+        <td align="right" bgcolor="#e0b5b5" style="padding: 10px;"><a href="http://lucida.com.br" target="_blank" title="M&eacute;tricas que fazem sentido"><img src="http://lucida-brasil.github.io/public/Images/lucida-logo.png" alt="Lúcida" width="12%" border="0"></a></td>
     </tr>
 </table>
 </body>

@@ -16,6 +16,7 @@
     "commander": "^2.8.1",
     "easy-zip": "0.0.4",
     "emailjs": "^0.3.16",
+    "gulp-inline-css": "^3.0.0",
     "handlebars": "^3.0.3"
   }
 }

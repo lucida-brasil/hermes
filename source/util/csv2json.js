@@ -2,9 +2,12 @@
 import fs         from 'fs';
 import replaceAll from './replace-all';
 import sanitize   from './sanitize-str';
+import path       from 'path';
+import { files }  from '../../config.json';
 
 function f(str) {
 	let _path = str.toLowerCase().replace('table:','').trim();
+    _path = path.resolve(files.base, _path);
 	let data = fs.readFileSync(_path, 'utf-8');
 	return csv2json(data);
 }
@@ -40,7 +43,7 @@ export default function csv2json(csv) {
 			}
     	}
         if( Object.keys(obj).length > 0 ) result.push(obj);
-    	
+
     }
     return result;
 }

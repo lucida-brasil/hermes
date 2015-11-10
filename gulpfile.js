@@ -1,7 +1,8 @@
-var gulp    = require('gulp');
-var babel   = require('gulp-babel');
-var uglify  = require('gulp-uglify');
-var jsonmin = require('gulp-jsonminify');
+var gulp      = require('gulp');
+var babel     = require('gulp-babel');
+var uglify    = require('gulp-uglify');
+var jsonmin   = require('gulp-jsonminify');
+var inlineCss = require('gulp-inline-css');
 var paths   = {
         source : {
             js: 'source/**/*.js',
